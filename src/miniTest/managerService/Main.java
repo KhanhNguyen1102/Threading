@@ -53,12 +53,10 @@ public class Main {
                 System.out.println("=========================");
             }
             case 6 -> {
-                studentList.sortMinToMaxByAverageScore();
-                studentList.print();
+                System.out.println(studentList.sortMinToMaxByAverageScore());
             }
             case 7 -> {
-                studentList.sortMaxToMinByAverageScore();
-                studentList.print();
+                System.out.println(studentList.sortMaxToMinByAverageScore());
             }
             case 8 -> System.out.println("Sinh viên có điểm cao nhất là " + studentList.findStudentHaveMaxAverageScore());
             case 9 -> System.out.println("Điểm số cao nhất là " + studentList.findMaxAverageScore());

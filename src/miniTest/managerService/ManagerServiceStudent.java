@@ -80,13 +80,17 @@ public class ManagerServiceStudent implements ManagerService<Student>{
         }
     }
 
-    public void sortMinToMaxByAverageScore(){
-        students.sort(Comparator.comparingDouble(Student::getAverageScore));
+    public ArrayList<Student> sortMinToMaxByAverageScore(){
+        ArrayList<Student> students1 = (ArrayList<Student>) students.clone();
+        students1.sort(Comparator.comparingDouble(Student::getAverageScore));
         System.out.println("Đã sắp xếp thành công !");
+        return students1;
     }
-    public void sortMaxToMinByAverageScore(){
+    public ArrayList<Student> sortMaxToMinByAverageScore(){
+        ArrayList<Student> students2 = (ArrayList<Student>) students.clone();
         students.sort((o1, o2) -> Double.compare(o2.getAverageScore(), o1.getAverageScore()));
         System.out.println("Đã sắp xếp thành công !");
+        return students2;
     }
     public double findMaxAverageScore(){
         double maxAverageScore = 0;
