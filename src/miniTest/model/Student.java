@@ -50,13 +50,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "id = " + getId() +
-                ", name = " + getName() +
-                ", age = " + getAge() +
-                ", mathScore=" + mathScore +
-                ", physicScore=" + physicScore +
-                ", chemistryScore=" + chemistryScore +
-                '}';
+        return String.format("|%-8s|%-10d|%-7d|%-13.2f|%-13.2f|%-13.2f|%-13.2f|",
+                getName(), getId(), getAge(), mathScore, physicScore, chemistryScore,getAverageScore());
     }
 }

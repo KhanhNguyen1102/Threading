@@ -75,9 +75,14 @@ public class ManagerServiceStudent implements ManagerService<Student>{
 
     @Override
     public void print() {
+        printFullLine();
+        System.out.printf("|%-8s|%-10s|%-7s|%-13s|%-13s|%-13s|%-13s|%n",
+                "Tên", "ID", "Tuổi", "Điểm toán", "Điểm lý", "Điểm Hóa", "Điểm TB");
+        printFullLine();
         for (Student student:students) {
             System.out.println(student);
         }
+        printFullLine();
     }
 
     public ArrayList<Student> sortMinToMaxByAverageScore(){
@@ -109,5 +114,25 @@ public class ManagerServiceStudent implements ManagerService<Student>{
             }
         }
         return null;
+    }
+    public static void printLine(int space) {
+        for (int i = 0; i <= space; i++) {
+            if (i == space) {
+                System.out.print("+");
+            } else {
+                System.out.print("-");
+            }
+        }
+    }
+    public static void printFullLine() {
+        System.out.print("+");
+        printLine(8);
+        printLine(10);
+        printLine(7);
+        printLine(13);
+        printLine(13);
+        printLine(13);
+        printLine(13);
+        System.out.println();
     }
 }
