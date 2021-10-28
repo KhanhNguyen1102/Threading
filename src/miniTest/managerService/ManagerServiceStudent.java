@@ -2,6 +2,7 @@ package miniTest.managerService;
 
 import miniTest.model.Student;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -134,5 +135,38 @@ public class ManagerServiceStudent implements ManagerService<Student>{
         printLine(13);
         printLine(13);
         System.out.println();
+    }
+    public void writeToFile(String filePath) throws IOException {
+        FileWriter fileWriter = new FileWriter(filePath);
+        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+        bufferedWriter.write("Name , Id , Age , Math Score, Physic Score, Chemistry Score ");
+        for (Student student:students) {
+            bufferedWriter.write("\n" + student.getName() +
+                                     " , "  + student.getId()+
+                                     " , "  + student.getAge()+
+                                     " , "  + student.getMathScore()+
+                                     " , "  + student.getPhysicScore()+
+                                     " , "  + student.getChemistryScore());
+        }
+        bufferedWriter.close();
+    }
+    public ArrayList<Student> getStudentFromFile(String filePath) throws IOException{
+        ArrayList<Student> students = new ArrayList<>();
+        FileReader fileReader = new FileReader(filePath);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line = bufferedReader.readLine();
+        while ((line = bufferedReader.readLine()) != null){
+            String[] str = line.split(",");
+            String name = str[0];
+            int id = Integer.parseInt(str[1].trim());
+            int age = Integer.parseInt(str[2].trim());
+            double mathScore = Double.parseDouble(str[3].trim());
+            double mathPhysicScore = Double.parseDouble(str[4].trim());
+            double mathChemistryScore = Double.parseDouble(str[5].trim());
+            Student student = new Student(name,age,mathScore,mathPhysicScore,mathChemistryScore);
+            student.setId(id);
+            students.add(student);
+        }
+        return students;
     }
 }

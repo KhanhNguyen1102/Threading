@@ -2,6 +2,8 @@ package miniTest.managerService;
 
 import miniTest.model.Student;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -60,6 +62,26 @@ public class Main {
             }
             case 8 -> System.out.println("Sinh viên có điểm cao nhất là " + studentList.findStudentHaveMaxAverageScore());
             case 9 -> System.out.println("Điểm số cao nhất là " + studentList.findMaxAverageScore());
+            case 10 -> {
+                try {
+                    studentList.writeToFile("dssv.csv");
+                    System.out.println("Đã xuất file thành công");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Xuất file không thành công");
+                }
+            }
+            case 11 -> {
+                try {
+                    ArrayList<Student> studentListFromFile = studentList.getStudentFromFile("dssv.csv");
+                    for (Student student: studentListFromFile) {
+                        System.out.println(student);
+                    }
+                }catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Xuất file không thành công");
+                }
+            }
             case 0 -> System.exit(0);
             default -> System.out.println("Invalid choice");
         }
@@ -75,6 +97,8 @@ public class Main {
         System.out.println("7. Sắp xếp các học sinh từ lớn đến bé theo điểm trung bình ");
         System.out.println("8. Tìm sinh viên điểm cao nhất ");
         System.out.println("9. Tìm điểm cao nhất ");
+        System.out.println("10.Xuất danh sách ra file csv ");
+        System.out.println("11.Lấy thông tin sinh viên từ file csv ");
         System.out.println("0. Thoát ");
         System.out.println("Điền lựa chọn: ");
         System.out.println("=========================");
