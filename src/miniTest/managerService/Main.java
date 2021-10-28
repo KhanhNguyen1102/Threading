@@ -3,8 +3,9 @@ package miniTest.managerService;
 import miniTest.model.Student;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +26,7 @@ public class Main {
             }
         } while (true);
     }
+
     public static void doChoice(int choice, ManagerServiceStudent studentList) {
         Scanner input = new Scanner(System.in);
         switch (choice) {
@@ -54,12 +56,8 @@ public class Main {
                 } else System.out.println("Ko tìm thấy");
                 System.out.println("=========================");
             }
-            case 6 -> {
-                System.out.println(studentList.sortMinToMaxByAverageScore());
-            }
-            case 7 -> {
-                System.out.println(studentList.sortMaxToMinByAverageScore());
-            }
+            case 6 -> System.out.println(studentList.sortMinToMaxByAverageScore());
+            case 7 -> System.out.println(studentList.sortMaxToMinByAverageScore());
             case 8 -> System.out.println("Sinh viên có điểm cao nhất là " + studentList.findStudentHaveMaxAverageScore());
             case 9 -> System.out.println("Điểm số cao nhất là " + studentList.findMaxAverageScore());
             case 10 -> {
@@ -73,11 +71,9 @@ public class Main {
             }
             case 11 -> {
                 try {
-                    ArrayList<Student> studentListFromFile = studentList.getStudentFromFile("dssv.csv");
-                    for (Student student: studentListFromFile) {
-                        System.out.println(student);
-                    }
-                }catch (IOException e) {
+                    studentList.setStudents(studentList.getStudentFromFile("dssv.csv"));
+                    studentList.print();
+                } catch (IOException e) {
                     e.printStackTrace();
                     System.out.println("Xuất file không thành công");
                 }
@@ -86,6 +82,7 @@ public class Main {
             default -> System.out.println("Invalid choice");
         }
     }
+
     public static void showMenu() {
         System.out.println("Menu");
         System.out.println("1. Thêm học sinh ");
@@ -117,7 +114,7 @@ public class Main {
         double physicScore = scanner.nextDouble();
         System.out.println("Điền điểm hóa của học sinh");
         double chemistryScore = scanner.nextDouble();
-        return new Student(name, age, mathScore,physicScore,chemistryScore);
+        return new Student(name, age, mathScore, physicScore, chemistryScore);
     }
 }
 
